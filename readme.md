@@ -187,8 +187,6 @@ DELETE /api/leads/:id
 
 # 📸 Screenshots
 
-# 📸 Screenshots
-
 ## Registration Page
 
 ![Registration Page](registration-page.png)
