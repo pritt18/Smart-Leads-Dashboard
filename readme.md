@@ -1,35 +1,36 @@
-# Smart Leads Dashboard 🚀
+# 🚀 Smart Leads Dashboard
 
-A full-stack MERN Smart Leads Dashboard built using React, TypeScript, Node.js, Express, MongoDB Atlas, Redux Toolkit, JWT Authentication, and Docker.
+A full-stack MERN Smart Leads Dashboard application built with React, TypeScript, Node.js, Express, MongoDB Atlas, JWT Authentication, Docker, Render, and Vercel.
 
 This project helps manage leads efficiently with authentication, CRUD operations, filtering, pagination, dark mode, CSV export, and Dockerized deployment.
+---
+
+# 🌐 Live Demo
+
+## Frontend
+https://smart-leads-dashboard.vercel.app
+
+## Backend API
+https://smart-leads-dashboard-unqg.onrender.com
 
 ---
 
 # 📌 Features
 
-## 🔐 Authentication
-- User Registration
-- User Login
-- JWT Authentication
-- Protected Routes
-
-## 📊 Dashboard
-- View Leads
-- Add New Leads
-- Edit Leads
-- Delete Leads
-- Search Leads
-- Filter by Status
-- Filter by Source
-- Pagination
-- Dark Mode Toggle
-- Export Leads to CSV
-
-## 🐳 Docker Support
-- Dockerized Frontend
-- Dockerized Backend
-- Docker Compose Setup
+✅ User Authentication (JWT Login/Register)  
+✅ Protected Routes  
+✅ MongoDB Atlas Integration  
+✅ Lead Management System  
+✅ Add Leads  
+✅ Delete Leads  
+✅ Search Leads  
+✅ Filter by Status  
+✅ Filter by Source  
+✅ Export Leads to CSV  
+✅ Responsive UI  
+✅ Dark Mode Support  
+✅ Dockerized Setup  
+✅ Cloud Deployment (Render + Vercel)
 
 ---
 
@@ -38,9 +39,9 @@ This project helps manage leads efficiently with authentication, CRUD operations
 ## Frontend
 - React.js
 - TypeScript
-- Redux Toolkit
+- Vite
 - Axios
-- CSS
+- React CSV
 
 ## Backend
 - Node.js
@@ -49,11 +50,13 @@ This project helps manage leads efficiently with authentication, CRUD operations
 - MongoDB Atlas
 - Mongoose
 - JWT Authentication
-- bcryptjs
 
-## DevOps
+## DevOps & Deployment
 - Docker
 - Docker Compose
+- Render
+- Vercel
+- GitHub
 
 ---
 
@@ -62,45 +65,20 @@ This project helps manage leads efficiently with authentication, CRUD operations
 ```bash
 smart-leads-dashboard/
 │
-├── client/
-│   ├── src/
-│   ├── public/
-│   ├── Dockerfile
-│   └── package.json
+├── client/        # Frontend React App
 │
-├── server/
-│   ├── src/
-│   ├── Dockerfile
-│   └── package.json
+├── server/        # Backend Express API
 │
 ├── docker-compose.yml
+│
 └── README.md
 ````
 
 ---
 
-# ⚙️ Installation
+# ⚙️ Environment Variables
 
-## 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/pritt18/smart-leads-dashboard.git
-```
-
-```bash
-cd smart-leads-dashboard
-```
-
----
-
-# 🔧 Backend Setup
-
-```bash
-cd server
-npm install
-```
-
-Create `.env` file inside `server` folder:
+## Backend (`server/.env`)
 
 ```env
 PORT=5000
@@ -108,10 +86,36 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 ```
 
-Run backend:
+## Frontend (`client/.env`)
+
+```env
+VITE_API_URL=https://your-backend-url/api
+```
+
+---
+
+# 🚀 Local Setup
+
+## Clone Repository
 
 ```bash
+git clone https://github.com/pritt18/Smart-Leads-Dashboard.git
+```
+
+---
+
+# 📦 Backend Setup
+
+```bash
+cd server
+npm install
 npm run dev
+```
+
+Backend runs on:
+
+```bash
+http://localhost:5000
 ```
 
 ---
@@ -121,12 +125,13 @@ npm run dev
 ```bash
 cd client
 npm install
+npm run dev
 ```
 
-Run frontend:
+Frontend runs on:
 
 ```bash
-npm run dev
+http://localhost:5173
 ```
 
 ---
@@ -139,68 +144,65 @@ Run full application using Docker:
 docker compose up --build
 ```
 
-Frontend:
+---
 
-```bash
-http://localhost:5173
+# 🔐 Authentication APIs
+
+## Register
+
+```http
+POST /api/auth/register
 ```
 
-Backend:
+## Login
 
-```bash
-http://localhost:5000
+```http
+POST /api/auth/login
 ```
 
 ---
 
-# 🔑 API Routes
+# 📊 Lead APIs
 
-## Authentication
+## Get Leads
 
-| Method | Endpoint           |
-| ------ | ------------------ |
-| POST   | /api/auth/register |
-| POST   | /api/auth/login    |
+```http
+GET /api/leads
+```
 
-## Leads
+## Add Lead
 
-| Method | Endpoint       |
-| ------ | -------------- |
-| GET    | /api/leads     |
-| POST   | /api/leads     |
-| PUT    | /api/leads/:id |
-| DELETE | /api/leads/:id |
+```http
+POST /api/leads
+```
+
+## Delete Lead
+
+```http
+DELETE /api/leads/:id
+```
 
 ---
 
 # 📸 Screenshots
 
+## Registration Page
+
+![alt text](image.png)
+
 ## Login Page
 
-(Add Screenshot Here)
+![alt text](image-1.png)
 
 ## Dashboard
 
-(Add Screenshot Here)
+![alt text](image-2.png)
 
-## Dark Mode
+## Leads
 
-(Add Screenshot Here)
-
----
-
-# 🚀 Deployment
-
-## Frontend Deployment
-
-* Vercel
-
-## Backend Deployment
-
-* Render
+![alt text](image-3.png)
 
 ---
-
 # 👨‍💻 Author
 
 ## Pritam Gangurde
@@ -212,11 +214,18 @@ http://localhost:5000
 
 # ⭐ Future Improvements
 
-* Role-Based Access
-* AI Lead Scoring
-* Email Integration
-* Analytics Dashboard
-* Notifications
-* Charts & Graphs
+* Edit Lead Feature
+* Pagination API
+* Role-based Access Control
+* Charts & Analytics
+* Email Notifications
+* Lead Notes & Activity Tracking
 
 ---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+```
+```
