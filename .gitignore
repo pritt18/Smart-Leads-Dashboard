@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# production
+dist/
+build/
+
+# environment variables
+.env
+.env.local
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+
+# Docker
+docker-data/
+
+# coverage
+coverage/
+
+# temp
+tmp/
+temp/
