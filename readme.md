@@ -201,7 +201,7 @@ DELETE /api/leads/:id
 
 ## Leads
 
-![Leads](Leads1)
+![alt text](Leads.png)
 
 ---
 # 👨‍💻 Author
