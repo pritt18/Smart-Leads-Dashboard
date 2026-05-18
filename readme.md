@@ -197,7 +197,7 @@ DELETE /api/leads/:id
 
 ## Dashboard
 
-![Dashboard](dashboard.png)
+![Dashboard](dashboard-page.png)
 
 ## Leads Page
 
