@@ -3,6 +3,7 @@
 A full-stack MERN Smart Leads Dashboard application built with React, TypeScript, Node.js, Express, MongoDB Atlas, JWT Authentication, Docker, Render, and Vercel.
 
 This project helps manage leads efficiently with authentication, CRUD operations, filtering, pagination, dark mode, CSV export, and Dockerized deployment.
+
 ---
 
 # 🌐 Live Demo
