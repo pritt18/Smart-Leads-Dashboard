@@ -189,19 +189,19 @@ DELETE /api/leads/:id
 
 ## Registration Page
 
-![alt text](image.png)
+![Registration Page](image.png)
 
 ## Login Page
 
-![alt text](image-1.png)
+![Login Page](image-1.png)
 
 ## Dashboard
 
-![alt text](image-2.png)
+![Dashboard](image-2.png)
 
 ## Leads
 
-![alt text](image-3.png)
+![Leads](Leads1)
 
 ---
 # 👨‍💻 Author
