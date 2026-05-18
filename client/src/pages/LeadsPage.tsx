@@ -1,156 +1,69 @@
-import { useState } from "react";
-
-import { useSelector } from "react-redux";
-
-import type { Lead } from "../types/lead";
-
+import { useEffect, useState } from "react";
 import API from "../api/axios";
+import LeadsTable from "../components/LeadsTable";
 
-import toast from "react-hot-toast";
-
-import EditLeadModal from "./EditLeadModal";
-
-interface Props {
-  leads: Lead[];
-  fetchLeads: () => void;
+export interface Lead {
+  _id: string;
+  name: string;
+  email: string;
+  status: string;
+  source: string;
+  createdAt: string;
 }
 
-const LeadsTable = ({
-  leads,
-  fetchLeads,
-}: Props) => {
-  const auth = useSelector(
-    (state: any) => state.auth
-  );
+const LeadsPage = () => {
+  const [leads, setLeads] = useState<Lead[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  const [selectedLead, setSelectedLead] =
-    useState<Lead | null>(null);
-
-  const handleDelete = async (
-    id: string
-  ) => {
+  const fetchLeads = async () => {
     try {
-      await API.delete(`/leads/${id}`);
+      setLoading(true);
 
-      toast.success(
-        "Lead deleted successfully"
-      );
+      const res = await API.get("/leads");
 
-      fetchLeads();
+      setLeads(res.data.leads || []);
     } catch (error) {
-      toast.error(
-        "Failed to delete lead"
-      );
+      console.error("Error fetching leads", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const deleteLead = async (id: string) => {
+    try {
+      await API.delete(`/leads/${id}`);
+
+      fetchLeads();
+    } catch (error) {
+      console.error("Delete failed", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
   return (
-    <>
-      <div className="overflow-x-auto bg-white rounded-xl shadow-md mt-6">
-        <table className="w-full">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-4 text-left">
-                Name
-              </th>
+    <div style={{ padding: "20px" }}>
+      <h2
+        style={{
+          marginBottom: "20px",
+        }}
+      >
+        Leads
+      </h2>
 
-              <th className="p-4 text-left">
-                Email
-              </th>
-
-              <th className="p-4 text-left">
-                Status
-              </th>
-
-              <th className="p-4 text-left">
-                Source
-              </th>
-
-              <th className="p-4 text-left">
-                Created
-              </th>
-
-              <th className="p-4 text-left">
-                Actions
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {leads.map((lead) => (
-              <tr
-                key={lead._id}
-                className="border-t"
-              >
-                <td className="p-4">
-                  {lead.name}
-                </td>
-
-                <td className="p-4">
-                  {lead.email}
-                </td>
-
-                <td className="p-4">
-                  <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm">
-                    {lead.status}
-                  </span>
-                </td>
-
-                <td className="p-4">
-                  {lead.source}
-                </td>
-
-                <td className="p-4">
-                  {new Date(
-                    lead.createdAt
-                  ).toLocaleDateString()}
-                </td>
-
-                <td className="p-4 flex gap-2">
-                  {auth.user?.role ===
-                    "admin" && (
-                    <>
-                      <button
-                        onClick={() =>
-                          setSelectedLead(
-                            lead
-                          )
-                        }
-                        className="bg-yellow-500 text-white px-4 py-2 rounded-lg"
-                      >
-                        Edit
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          handleDelete(
-                            lead._id
-                          )
-                        }
-                        className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {selectedLead && (
-        <EditLeadModal
-          lead={selectedLead}
-          onClose={() =>
-            setSelectedLead(null)
-          }
+      {loading ? (
+        <p>Loading leads...</p>
+      ) : (
+        <LeadsTable
+          leads={leads}
           fetchLeads={fetchLeads}
+          deleteLead={deleteLead}
         />
       )}
-    </>
+    </div>
   );
 };
 
-export default LeadsTable;
+export default LeadsPage;
