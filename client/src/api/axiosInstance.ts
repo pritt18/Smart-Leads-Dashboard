@@ -17,10 +17,16 @@ import axios from 'axios';
 
 const TOKEN_KEY = 'leadflow_token';
 
+const rawBaseURL: string =
+  (import.meta.env['VITE_API_BASE_URL'] as string | undefined) ??
+  (import.meta.env['VITE_API_URL'] as string | undefined) ??
+  '';
+
+// Normalize: strip trailing slash and optional /api suffix so calls to /api/v1 always work
+const normalizedBaseURL = rawBaseURL.replace(/\/+$/, '').replace(/\/api$/, '');
+
 const axiosInstance = axios.create({
-  // In development the Vite proxy forwards /api → localhost:5000.
-  // In production set VITE_API_BASE_URL to the deployed API origin.
-  baseURL: import.meta.env['VITE_API_BASE_URL'] ?? '',
+  baseURL: normalizedBaseURL,
   headers: { 'Content-Type': 'application/json' },
   timeout: 15000,
 });
