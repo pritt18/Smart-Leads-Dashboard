@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans text-gray-900 bg-gray-50;
+  }
+}
+
+@layer components {
+  /* Skeleton shimmer animation used across loading states */
+  .skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+  }
+}
